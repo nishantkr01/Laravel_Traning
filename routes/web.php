@@ -39,4 +39,4 @@ Route::get('/login', function () {
 });
 
 
-Route::get('/addition', [anoController::class, 'addition']);
+Route::get('/addition', [anoController::class, 'calc']);

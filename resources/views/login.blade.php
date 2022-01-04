@@ -11,9 +11,12 @@
     @endif --}}
 
     <form method="GET" action="addition">
-        Fno : <input type="text" id="fno" name="fno"/></br>
-        Sno : <input type="text" id="sno" name="sno"/></br>
-        <button type="submit">Add</button>
+        Fno : <input class="form-control"  type="text" id="fno" name="fno"/></br>
+        Sno : <input class="form-control" type="text" id="sno" name="sno"/></br>
+        <button class="form-control" name="btn" value="add" type="submit">Add</button>
+        <button class="form-control" name="btn" value="sub" type="submit">Sub</button>
+
         <p> {{isset($result)?$result:''}}</p>
     </form>
+
 {{-- @stop --}}

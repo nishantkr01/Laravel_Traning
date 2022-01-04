@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Support\Facades\Input;
@@ -11,10 +12,18 @@ use Illuminate\Support\Facades\Redirect;
 class anoController extends Controller
 {
     //
-    function addition(Request $request){
+
+    function calc(Request $request)
+    {
         $arr = $request->all();
-        $result = $arr["fno"]+$arr["sno"];
-        $result = "Result is : ".$result;
-        return view('login',['result'=>$result]);
+        if ($arr["btn"] == "add") {
+            $result = $arr["fno"] + $arr["sno"];
+        } else if ($arr["btn"] == "sub") {
+            $result = $arr["fno"] - $arr["sno"];
+        } else {
+            return $result="";
+        }
+        $result = "Result is : " . $result;
+        return view('login', ['result' => $result]);
     }
 }
