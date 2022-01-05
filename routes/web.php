@@ -14,6 +14,31 @@ use App\Http\Controllers\anoController;
 |
 */
 
+Route::get('/login', function () {
+    return view('login');
+});
+Route::post('/login', [anoController::class, 'login']);
+
+
+
+Route::get('/register', function () {
+    return view('register');
+});
+
+Route::post('/register', [anoController::class, 'register']);
+
+Route::get('/addition', [anoController::class, 'calc']);
+
+
+
+
+
+
+
+
+Route::get('/getstate', [anoController::class, 'getstate']);
+
+
 Route::get('/', function () {
     return view('home');
 });
@@ -34,9 +59,4 @@ Route::get('/about', function () {
     return view('aboutus');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
 
-
-Route::get('/addition', [anoController::class, 'calc']);
