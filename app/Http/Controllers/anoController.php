@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+// use App\Http\Controllers\Controller;
 use App\Http\Support\Facades\Input;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
-// use Illuminate\Routing\Controller;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 // use DB;
 
@@ -27,18 +27,31 @@ class anoController extends Controller
     public function getstate(Request $request)
     {
         $arr = $request->all();
-        if($arr['c']=="india")
+        // print_r($arr['c']);
+        // echo $arr['c'];
+
+        if($arr['c']=='india')
         {
             return response()->json([
                 'zero'=>'odisha',
                 'one'=>'gujarat',
+                'two'=>'Jharkhand',
+                'three'=>'West Bengal',
+                'four'=>'Kerala',
+                'fibve'=>'Karnataka',
+                'six'=>'Maharastra',
             ]);
         }
         else if($arr['c']=='pakistan')
         {
             return response()->json([
-                'zero'=>'odisha',
-                'one'=>'gujarat',
+                'zero'=>'Sindh',
+                'one'=>'Punjab',
+                'two'=>'Sindh',
+                'three'=>'Pak Occupied balochistan',
+                'four'=>'FATA',
+                'five'=>'Islamabad',
+                'six'=>'Lahore',
             ]);
         }
     }

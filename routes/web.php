@@ -36,8 +36,11 @@ Route::get('/addition', [anoController::class, 'calc']);
 
 
 
-Route::get('/getstate', [anoController::class, 'getstate']);
+Route::post('/getstate', [anoController::class, 'getstate']);
 
+Route::get('/getstate1', function () {
+    return view('ajaxGetState');
+});
 
 Route::get('/', function () {
     return view('home');
