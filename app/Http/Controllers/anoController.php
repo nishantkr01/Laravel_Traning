@@ -9,11 +9,53 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\session;
 // use DB;
 
 class anoController extends Controller
 {
     //
+    public function deleteuserdetails(Request $request)
+    {
+        $arr = $request->all();
+        DB::delete('delete from usermaster where userId=?',[$arr['userid']]);
+        $users=DB::table("usermaster")->paginate(2);
+        return view('viewusers')->with('users',$users);
+    }
+    public function updateuserdetails(Request $request){
+        $arr = $request->all();
+        DB::update('update usermaster set mobile=?,email=? where userid=?',[$arr['mobile'],$arr['email'],$arr['userid']]);
+        $users=DB::table("usermaster")->paginate(2);
+        // return View::make('viewuser')->with('users',$users);
+        return view('viewusers')->with('users',$users);
+
+    }
+
+    public function contactus(Request $request){
+        $arr = $request->all();
+        DB::table('contactus')->insert(
+            ['name'=> $arr['name'], 'email'=>$arr['email'], 'mobile'=>$arr['mobile'], 'age'=>$arr['age'], 'address'=>$arr['username'],'gender'=>$arr['gender']]
+        );
+        $message ="Contact Successfully";
+        return view('contactus', ['message'=>$message]);
+    }
+
+
+    public function login(Request $request){
+        $arr = $request->all();
+        $user = DB::table("UserMaster")->where("userid",$arr['userid'])->where('password', $arr['password'])->first();
+        if($user){
+            // session::put('variableName', $arr['userid']);/
+
+            session(['userid' => $arr['userid']]);
+
+            return view('userHome');
+        }else{
+            $message = "Invalid Login Details !";
+            return view('login',['message'=>$message]);
+        }
+    }
+
     public function register(Request $request){
         $arr = $request->all();
         DB::table('UserMaster')->insert(
